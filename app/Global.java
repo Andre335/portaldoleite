@@ -97,8 +97,8 @@ public class Global extends GlobalSettings {
 	protected void criaUsuarios() {
 		User andre = new User();
 		andre.setNome("Andre");
-		andre.setEmail("andre335@gmail.com");
-		andre.setLogin("andre335");
+		andre.setEmail("andrerox6@gmail.com");
+		andre.setLogin("andrerox6");
 		andre.setPass("Andre95153565");
 		dao.persist(andre);
 		
