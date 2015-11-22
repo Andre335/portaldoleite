@@ -3,6 +3,7 @@ import java.util.List;
 
 import models.Disciplina;
 import models.Tema;
+import models.User;
 import models.dao.GenericDAOImpl;
 import play.Application;
 import play.GlobalSettings;
@@ -24,11 +25,86 @@ public class Global extends GlobalSettings {
 			public void invoke() throws Throwable {
 				if(dao.findAllByClassName(Disciplina.class.getName()).size() == 0){
 					criaDisciplinaTemas();
+					criaUsuarios();
 				}
 			}
 		});
 	}
 	
+	protected void criaUsuarios() {
+		User andre = new User();
+		andre.setNome("Andre");
+		andre.setEmail("andre335@gmail.com");
+		andre.setLogin("andre335");
+		andre.setPass("andre95153565");
+		dao.persist(andre);
+		
+		User padrao = new User();
+		padrao.setNome("Usuario Padrao");
+		padrao.setEmail("padrao@gmail.com");
+		padrao.setLogin("padrao");
+		padrao.setPass("123456789");
+		dao.persist(padrao);
+		
+		User user1 = new User();
+		user1.setNome("Usuario 1");
+		user1.setEmail("usuario1@gmail.com");
+		user1.setLogin("user1");
+		user1.setPass("user123");
+		dao.persist(user1);
+		
+		User user2 = new User();
+		user2.setNome("Usuario 2");
+		user2.setEmail("usuario2@gmail.com");
+		user2.setLogin("user2");
+		user2.setPass("user234");
+		dao.persist(user2);
+		
+		User user3 = new User();
+		user3.setNome("Usuario 3");
+		user3.setEmail("usuario3@gmail.com");
+		user3.setLogin("user3");
+		user3.setPass("user345");
+		dao.persist(user3);
+		
+		User user4 = new User();
+		user4.setNome("Usuario 4");
+		user4.setEmail("usuario4@gmail.com");
+		user4.setLogin("user4");
+		user4.setPass("user456");
+		dao.persist(user4);
+		
+		User user5 = new User();
+		user5.setNome("Usuario 5");
+		user5.setEmail("usuario5@gmail.com");
+		user5.setLogin("user5");
+		user5.setPass("user567");
+		dao.persist(user5);
+		
+		User user6 = new User();
+		user6.setNome("Usuario 6");
+		user6.setEmail("usuario6@gmail.com");
+		user6.setLogin("user6");
+		user6.setPass("user678");
+		dao.persist(user6);
+		
+		User user7 = new User();
+		user7.setNome("Usuario 7");
+		user7.setEmail("usuario7@gmail.com");
+		user7.setLogin("user7");
+		user7.setPass("user789");
+		dao.persist(user7);
+		
+		User user8 = new User();
+		user8.setNome("Usuario 8");
+		user8.setEmail("usuario8@gmail.com");
+		user8.setLogin("user8");
+		user8.setPass("user891");
+		dao.persist(user8);
+		
+		dao.flush();
+	}
+
 	@Override
 	public void onStop(Application app){
 	    JPA.withTransaction(new play.libs.F.Callback0() {
@@ -58,6 +134,22 @@ public class Global extends GlobalSettings {
 		si1.addTema(new Tema("Minitestes"));
 		si1.addTema(new Tema("Projeto"));
 		dao.persist(si1);
+		
+		Disciplina es = new Disciplina("Engenharia de Software");
+		es.addTema(new Tema("Metodos Formais"));
+		es.addTema(new Tema("Desenvolvimento de Software"));
+		es.addTema(new Tema("Evolucao de Software"));
+		es.addTema(new Tema("Testes"));
+		es.addTema(new Tema("Ferramentas"));
+		dao.persist(es);
+		
+		Disciplina oac = new Disciplina("Organizacao e Arquitetura de Computadores");
+		oac.addTema(new Tema("Tipos de Memoria"));
+		oac.addTema(new Tema("Assembly"));
+		oac.addTema(new Tema("FPGA"));
+		oac.addTema(new Tema("Circuitos Combinacionais"));
+		oac.addTema(new Tema("Circuitos Sequenciais"));
+		dao.persist(oac);
 		dao.flush();
 	}
 }
