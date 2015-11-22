@@ -47,23 +47,38 @@ public class Global extends GlobalSettings {
 	protected void criaDicas() {
 		dicaSiMiniT = new DicaConselho("Sempre esteja a par dos assuntos para quando tiver um miniteste.");
 		dicaSiMiniT.setTema(miniteste);
+		dicaSiMiniT.setUser("Andre");
+		dicaSiMiniT.addUsuarioQueVotou("Usuario 9");
+		dicaSiMiniT.addUsuarioQueVotou("Usuario 6");
 		dao.persist(dicaSiMiniT);
 		
 		dicaSiLabs = new DicaConselho("Nao espere muito tempo para comecar a fazer os labs, para nao se atrasar.");
 		dicaSiLabs.setTema(labs);
+		dicaSiLabs.setUser("Usuario Padrao");
+		dicaSiLabs.addUsuarioQueVotou("Usuario Padrao");
+		dicaSiLabs.addUsuarioQueVotou("Usuario 3");
 		dao.persist(dicaSiLabs);
 		
 		dicaOacTiposMem = new DicaAssunto("Memoria Cache e a mais eficiente, porem mais cara.");
 		dicaOacTiposMem.setTema(tiposDeMem);
+		dicaOacTiposMem.setUser("Andre");
+		dicaOacTiposMem.addUsuarioQueVotou("Usuario 1");
+		dicaOacTiposMem.addUsuarioQueVotou("Usuario 2");
 		dao.persist(dicaOacTiposMem);
 		
 		dicaEsTestes = new DicaMaterial("O Livro de engenharia de software do sommerville e muito bom.");
 		dicaEsTestes.setTema(testes);
+		dicaEsTestes.setUser("Usuario 1");
+		dicaEsTestes.addUsuarioQueVotou("Andre");
+		dicaEsTestes.addUsuarioQueVotou("Usuario 4");
 		dao.persist(dicaEsTestes);
 		
 		dicaEsFerr = new DicaDisciplina("Voce tera que estar familiarizado com varias ferramentas para o projeto."
 				, "Tera de usar elas no seu projeto.");
 		dicaEsFerr.setTema(ferramentas);
+		dicaEsFerr.setUser("Usuario 2");
+		dicaEsFerr.addUsuarioQueVotou("Usuario 5");
+		dicaEsFerr.addUsuarioQueVotou("Usuario 7");
 		dao.persist(dicaEsFerr);
 		
 		dao.flush();

@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,6 +68,7 @@ public abstract class Dica implements Comparable<Dica>{
 	public void setTema(Tema tema) {
 		this.tema = tema;
 		this.usersCommentaries = new HashMap<String,String>();
+		this.usuariosQueJaVotaram = new ArrayList<String>();
 	}
 
 	public long getId() {
