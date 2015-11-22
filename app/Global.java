@@ -21,6 +21,9 @@ public class Global extends GlobalSettings {
 	private static GenericDAOImpl dao = new GenericDAOImpl();
 	private List<Disciplina> disciplinas = new ArrayList<>();
 	private Disciplina si1, oac, es;
+	private Dica dicaSiMiniT, dicaSiLabs;
+	private Dica dicaEsTestes, dicaEsFerr;
+	private Dica dicaOacTiposMem;
 	private Tema miniteste, labs;
 	private Tema testes, ferramentas;
 	private Tema tiposDeMem;
@@ -36,31 +39,42 @@ public class Global extends GlobalSettings {
 					criaDisciplinaTemas();
 					criaDicas();
 					criaUsuarios();
+//					ciraVotos();
 				}
 			}
 		});
 	}
-	
+
 	protected void criaDicas() {
-		Dica dicaSiMiniT = new DicaConselho("Sempre esteja a par dos assuntos para quando tiver um miniteste.");
+		dicaSiMiniT = new DicaConselho("Sempre esteja a par dos assuntos para quando tiver um miniteste.");
 		dicaSiMiniT.setTema(miniteste);
+		dicaSiMiniT.addUsuarioQueVotou("andre335");
+		dicaSiMiniT.addUsuarioQueVotou("user1");
+		dicaSiMiniT.addUsuarioQueVotou("user2");
 		dao.persist(dicaSiMiniT);
 		
-		Dica dicaSiLabs = new DicaConselho("Nao espere muito tempo para comecar a fazer os labs, para nao se atrasar.");
+		dicaSiLabs = new DicaConselho("Nao espere muito tempo para comecar a fazer os labs, para nao se atrasar.");
 		dicaSiLabs.setTema(labs);
+		dicaSiLabs.addUsuarioQueVotou("user3");
+		dicaSiLabs.addUsuarioQueVotou("padrao");
 		dao.persist(dicaSiLabs);
 		
-		Dica dicaOacTiposMem = new DicaAssunto("Memoria Cache e a mais eficiente, porem mais cara.");
+		dicaOacTiposMem = new DicaAssunto("Memoria Cache e a mais eficiente, porem mais cara.");
 		dicaOacTiposMem.setTema(tiposDeMem);
+		dicaOacTiposMem.addUsuarioQueVotou("user4");
+		dicaOacTiposMem.addUsuarioQueVotou("user5");
 		dao.persist(dicaOacTiposMem);
 		
-		Dica dicaEsTestes = new DicaMaterial("O Livro de engenharia de software do sommerville e muito bom.");
+		dicaEsTestes = new DicaMaterial("O Livro de engenharia de software do sommerville e muito bom.");
 		dicaEsTestes.setTema(testes);
+		dicaEsTestes.addUsuarioQueVotou("andre335");
 		dao.persist(dicaEsTestes);
 		
-		Dica dicaEsFerr = new DicaDisciplina("Voce tera que estar familiarizado com varias ferramentas para o projeto."
+		dicaEsFerr = new DicaDisciplina("Voce tera que estar familiarizado com varias ferramentas para o projeto."
 				, "Tera de usar elas no seu projeto.");
 		dicaEsFerr.setTema(ferramentas);
+		dicaEsFerr.addUsuarioQueVotou("user6");
+		dicaEsFerr.addUsuarioQueVotou("user7");
 		dao.persist(dicaEsFerr);
 		
 		dao.flush();
