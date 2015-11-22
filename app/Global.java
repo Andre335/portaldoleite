@@ -50,6 +50,8 @@ public class Global extends GlobalSettings {
 		dicaSiMiniT.setUser("Andre");
 		dicaSiMiniT.addUsuarioQueVotou("Usuario 9");
 		dicaSiMiniT.addUsuarioQueVotou("Usuario 6");
+		dicaSiMiniT.incrementaConcordancias();
+		dicaSiMiniT.incrementaConcordancias();
 		dao.persist(dicaSiMiniT);
 		
 		dicaSiLabs = new DicaConselho("Nao espere muito tempo para comecar a fazer os labs, para nao se atrasar.");
@@ -57,6 +59,8 @@ public class Global extends GlobalSettings {
 		dicaSiLabs.setUser("Usuario Padrao");
 		dicaSiLabs.addUsuarioQueVotou("Usuario Padrao");
 		dicaSiLabs.addUsuarioQueVotou("Usuario 3");
+		dicaSiLabs.incrementaConcordancias();
+		dicaSiLabs.incrementaConcordancias();
 		dao.persist(dicaSiLabs);
 		
 		dicaOacTiposMem = new DicaAssunto("Memoria Cache e a mais eficiente, porem mais cara.");
@@ -64,6 +68,8 @@ public class Global extends GlobalSettings {
 		dicaOacTiposMem.setUser("Andre");
 		dicaOacTiposMem.addUsuarioQueVotou("Usuario 1");
 		dicaOacTiposMem.addUsuarioQueVotou("Usuario 2");
+		dicaOacTiposMem.incrementaConcordancias();
+		dicaOacTiposMem.incrementaConcordancias();
 		dao.persist(dicaOacTiposMem);
 		
 		dicaEsTestes = new DicaMaterial("O Livro de engenharia de software do sommerville e muito bom.");
@@ -71,6 +77,8 @@ public class Global extends GlobalSettings {
 		dicaEsTestes.setUser("Usuario 1");
 		dicaEsTestes.addUsuarioQueVotou("Andre");
 		dicaEsTestes.addUsuarioQueVotou("Usuario 4");
+		dicaEsTestes.incrementaConcordancias();
+		dicaEsTestes.incrementaConcordancias();
 		dao.persist(dicaEsTestes);
 		
 		dicaEsFerr = new DicaDisciplina("Voce tera que estar familiarizado com varias ferramentas para o projeto."
@@ -79,6 +87,8 @@ public class Global extends GlobalSettings {
 		dicaEsFerr.setUser("Usuario 2");
 		dicaEsFerr.addUsuarioQueVotou("Usuario 5");
 		dicaEsFerr.addUsuarioQueVotou("Usuario 7");
+		dicaEsFerr.incrementaConcordancias();
+		dicaEsFerr.incrementaConcordancias();
 		dao.persist(dicaEsFerr);
 		
 		dao.flush();
