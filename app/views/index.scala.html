@@ -64,12 +64,12 @@
 	            			<hr class="uk-article-divider-orange">
             			</div>
             			@for(disciplina <- disciplinas){
-            				<p> @disciplina.getNome() </p>
+            				<p> Disciplina: @disciplina.getNome() </p>
 			           		@for(dica <- dicas){
 			           			@if(disciplina.getTemas().contains(dica.getTema)){
-			           				<p> @dica.getTema().getName() </p>
+			           				<p> Tema: @dica.getTema().getName() </p>
 			           				<p> @dica.getTexto() </p>
-			           				<a> Link para os detalhes </a>	
+			           				<a href="@routes.Application.tema(@dica.getTema().getId())"> Link para os detalhes </a>	
 			           			}
 			           		}
 		           		}
