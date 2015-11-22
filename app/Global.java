@@ -1,6 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Dica;
+import models.DicaAssunto;
+import models.DicaConselho;
+import models.DicaDisciplina;
+import models.DicaMaterial;
 import models.Disciplina;
 import models.Tema;
 import models.User;
@@ -15,6 +20,10 @@ public class Global extends GlobalSettings {
 
 	private static GenericDAOImpl dao = new GenericDAOImpl();
 	private List<Disciplina> disciplinas = new ArrayList<>();
+	private Disciplina si1, oac, es;
+	private Tema miniteste, labs;
+	private Tema testes, ferramentas;
+	private Tema tiposDeMem;
 	
 	@Override
 	public void onStart(Application app) {
@@ -25,18 +34,44 @@ public class Global extends GlobalSettings {
 			public void invoke() throws Throwable {
 				if(dao.findAllByClassName(Disciplina.class.getName()).size() == 0){
 					criaDisciplinaTemas();
+					criaDicas();
 					criaUsuarios();
 				}
 			}
 		});
 	}
 	
+	protected void criaDicas() {
+		Dica dicaSiMiniT = new DicaConselho("Sempre esteja a par dos assuntos para quando tiver um miniteste.");
+		dicaSiMiniT.setTema(miniteste);
+		dao.persist(dicaSiMiniT);
+		
+		Dica dicaSiLabs = new DicaConselho("Nao espere muito tempo para comecar a fazer os labs, para nao se atrasar.");
+		dicaSiLabs.setTema(labs);
+		dao.persist(dicaSiLabs);
+		
+		Dica dicaOacTiposMem = new DicaAssunto("Memoria Cache e a mais eficiente, porem mais cara.");
+		dicaOacTiposMem.setTema(tiposDeMem);
+		dao.persist(dicaOacTiposMem);
+		
+		Dica dicaEsTestes = new DicaMaterial("O Livro de engenharia de software do sommerville e muito bom.");
+		dicaEsTestes.setTema(testes);
+		dao.persist(dicaEsTestes);
+		
+		Dica dicaEsFerr = new DicaDisciplina("Voce tera que estar familiarizado com varias ferramentas para o projeto."
+				, "Tera de usar elas no seu projeto.");
+		dicaEsFerr.setTema(ferramentas);
+		dao.persist(dicaEsFerr);
+		
+		dao.flush();
+	}
+
 	protected void criaUsuarios() {
 		User andre = new User();
 		andre.setNome("Andre");
 		andre.setEmail("andre335@gmail.com");
 		andre.setLogin("andre335");
-		andre.setPass("andre95153565");
+		andre.setPass("Andre95153565");
 		dao.persist(andre);
 		
 		User padrao = new User();
@@ -120,7 +155,7 @@ public class Global extends GlobalSettings {
 	}
 	
 	private void criaDisciplinaTemas(){
-		Disciplina si1 = new Disciplina("Sistemas de Informação 1");
+		si1 = new Disciplina("Sistemas de Informação 1");
 		si1.addTema(new Tema("Análise x Design"));
 		si1.addTema(new Tema("Orientação a objetos"));
 		si1.addTema(new Tema("GRASP"));
@@ -130,21 +165,32 @@ public class Global extends GlobalSettings {
 		si1.addTema(new Tema("JavaScript"));
 		si1.addTema(new Tema("HTML / CSS / Bootstrap"));
 		si1.addTema(new Tema("Heroku"));
-		si1.addTema(new Tema("Labs"));
-		si1.addTema(new Tema("Minitestes"));
+		
+		labs = new Tema("Labs");
+		si1.addTema(labs);
+		miniteste = new Tema("Minitestes");
+		si1.addTema(miniteste);
+		
 		si1.addTema(new Tema("Projeto"));
 		dao.persist(si1);
 		
-		Disciplina es = new Disciplina("Engenharia de Software");
+		es = new Disciplina("Engenharia de Software");
 		es.addTema(new Tema("Metodos Formais"));
 		es.addTema(new Tema("Desenvolvimento de Software"));
 		es.addTema(new Tema("Evolucao de Software"));
-		es.addTema(new Tema("Testes"));
-		es.addTema(new Tema("Ferramentas"));
+		
+		testes = new Tema("Testes");
+		es.addTema(testes);
+		ferramentas = new Tema("Ferramentas");
+		es.addTema(ferramentas);
+		
 		dao.persist(es);
 		
-		Disciplina oac = new Disciplina("Organizacao e Arquitetura de Computadores");
-		oac.addTema(new Tema("Tipos de Memoria"));
+		oac = new Disciplina("Organizacao e Arquitetura de Computadores");
+		
+		tiposDeMem = new Tema("Tipos de Memoria");
+		oac.addTema(tiposDeMem);
+		
 		oac.addTema(new Tema("Assembly"));
 		oac.addTema(new Tema("FPGA"));
 		oac.addTema(new Tema("Circuitos Combinacionais"));
