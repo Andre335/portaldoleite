@@ -63,11 +63,16 @@
 	            			</div>
 	            			<hr class="uk-article-divider-orange">
             			</div>
-            			@for(dica <- dicas){
-            				<p> @dica.getTema().getName() </p>
-            				<p> @dica.getTexto() </p>
-            				<a> Link para os detalhes </a>	
-            			}
+            			@for(disciplina <- disciplinas){
+            				<p> @disciplina.getNome() </p>
+			           		@for(dica <- dicas){
+			           			@if(dica.getTema().getDisciplina().getNome()==disciplina.getNome()){
+			           				<p> @dica.getTema().getName() </p>
+			           				<p> @dica.getTexto() </p>
+			           				<a> Link para os detalhes </a>	
+			           			}
+			           		}
+		           		}
             		</div>
             	</div>
             </div>
