@@ -39,7 +39,6 @@ public class Global extends GlobalSettings {
 					criaDisciplinaTemas();
 					criaDicas();
 					criaUsuarios();
-//					ciraVotos();
 				}
 			}
 		});
@@ -48,33 +47,23 @@ public class Global extends GlobalSettings {
 	protected void criaDicas() {
 		dicaSiMiniT = new DicaConselho("Sempre esteja a par dos assuntos para quando tiver um miniteste.");
 		dicaSiMiniT.setTema(miniteste);
-		dicaSiMiniT.addUsuarioQueVotou("andre335");
-		dicaSiMiniT.addUsuarioQueVotou("user1");
-		dicaSiMiniT.addUsuarioQueVotou("user2");
 		dao.persist(dicaSiMiniT);
 		
 		dicaSiLabs = new DicaConselho("Nao espere muito tempo para comecar a fazer os labs, para nao se atrasar.");
 		dicaSiLabs.setTema(labs);
-		dicaSiLabs.addUsuarioQueVotou("user3");
-		dicaSiLabs.addUsuarioQueVotou("padrao");
 		dao.persist(dicaSiLabs);
 		
 		dicaOacTiposMem = new DicaAssunto("Memoria Cache e a mais eficiente, porem mais cara.");
 		dicaOacTiposMem.setTema(tiposDeMem);
-		dicaOacTiposMem.addUsuarioQueVotou("user4");
-		dicaOacTiposMem.addUsuarioQueVotou("user5");
 		dao.persist(dicaOacTiposMem);
 		
 		dicaEsTestes = new DicaMaterial("O Livro de engenharia de software do sommerville e muito bom.");
 		dicaEsTestes.setTema(testes);
-		dicaEsTestes.addUsuarioQueVotou("andre335");
 		dao.persist(dicaEsTestes);
 		
 		dicaEsFerr = new DicaDisciplina("Voce tera que estar familiarizado com varias ferramentas para o projeto."
 				, "Tera de usar elas no seu projeto.");
 		dicaEsFerr.setTema(ferramentas);
-		dicaEsFerr.addUsuarioQueVotou("user6");
-		dicaEsFerr.addUsuarioQueVotou("user7");
 		dao.persist(dicaEsFerr);
 		
 		dao.flush();
