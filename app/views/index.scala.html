@@ -64,6 +64,7 @@
 	            			<hr class="uk-article-divider-orange">
             			</div>
             			@for(dica <- dicas){
+            				<p> @dica.getTema().getName() </p>
             				<p> @dica.getTexto() </p>
             				<a> Link para os detalhes </a>	
             			}
