@@ -69,7 +69,7 @@
 			           			@if(disciplina.getTemas().contains(dica.getTema)){
 			           				<p> Tema: @dica.getTema().getName() </p>
 			           				<p> @dica.getTexto() </p>
-			           				<a href="@routes.Application.tema(@dica.getTema().getId())"> Link para os detalhes </a>	
+			           				<a href="@routes.Application.tema(dica.getTema().getId())"> Link para os detalhes </a>	
 			           			}
 			           		}
 		           		}
