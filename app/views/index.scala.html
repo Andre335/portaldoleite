@@ -66,7 +66,7 @@
             			@for(disciplina <- disciplinas){
             				<p> @disciplina.getNome() </p>
 			           		@for(dica <- dicas){
-			           			@if(dica.getTema().getDisciplina().getNome()==disciplina.getNome()){
+			           			@if(disciplina.getTemas().contains(dica.getTema)){
 			           				<p> @dica.getTema().getName() </p>
 			           				<p> @dica.getTexto() </p>
 			           				<a> Link para os detalhes </a>	
