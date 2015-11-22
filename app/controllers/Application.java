@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -30,8 +31,21 @@ public class Application extends Controller {
     public static Result index() {
 		List<Disciplina> disciplinas = dao.findAllByClassName(Disciplina.class.getName());
 		List<Dica> dicas = dao.findAllByClassName(Dica.class.getName());
+		dicas = filtraNumeroDeDicas(dicas, 10);
         return ok(views.html.index.render(disciplinas, dicas));
     }
+	
+	private static ArrayList<Dica> filtraNumeroDeDicas(List<Dica> dicasTotal, int numDicas) {
+		ArrayList<Dica> dicasFiltrada = new ArrayList<>();
+		if(dicasTotal.size() > numDicas) {
+			for (int i = 0; i < numDicas; i++) {
+				dicasFiltrada.add(dicasTotal.get(dicasTotal.size()-1-i));
+			}
+		} else {
+			return (ArrayList<Dica>) dicasTotal;
+		}
+		return dicasFiltrada;
+	}
 	
 	@Transactional
 	@Security.Authenticated(Secured.class)

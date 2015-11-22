@@ -56,24 +56,26 @@
             			</div>
             			<p>Escolha uma disciplina ou tema ao lado para acessar os leites.</p>
             		</div>
-            		<div class="uk-panel uk-panel-box">
-            			<div class="uk-article">
-            				<h1> Ultimas Dicas: </h1>
-            				<div>
-	            			</div>
-	            			<hr class="uk-article-divider-orange">
-            			</div>
-            			@for(disciplina <- disciplinas){
-            				<p> Disciplina: @disciplina.getNome() </p>
-			           		@for(dica <- dicas){
-			           			@if(disciplina.getTemas().contains(dica.getTema)){
-			           				<p> Tema: @dica.getTema().getName() </p>
-			           				<p> @dica.getTexto() </p>
-			           				<a href="@routes.Application.tema(dica.getTema().getId())"> Link para os detalhes </a>	
-			           			}
-			           		}
-		           		}
-            		</div>
+		            	@for(disciplina <- disciplinas){
+					        <div class="uk-panel uk-panel-box">
+					            <div class="uk-article">
+					            	<h1> @disciplina.getNome() </h1>
+					            	<div>
+						            </div>
+						            <hr class="uk-article-divider-orange">
+					            </div>
+							        <div class="uk-article">
+										@for(dica <- dicas){
+											@if(disciplina.getTemas().contains(dica.getTema)){
+											    <h2> @dica.getTema().getName() </h2>
+											    <p> @dica.getTexto() </p>
+											    <a href="@routes.Application.tema(dica.getTema().getId())"> Detalhes </a>
+											    <hr class="uk-article-divider-orange">
+											}
+										}
+									</div>
+							</div>
+				        }
             	</div>
             </div>
         </div>
