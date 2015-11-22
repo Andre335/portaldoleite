@@ -11,8 +11,12 @@ import models.DicaConselho;
 import models.DicaDisciplina;
 import models.DicaMaterial;
 import models.Disciplina;
+import models.FilterStrategy;
+import models.MaisDiscordanciasStrategy;
+import models.MaisVotosPositivosStrategy;
 import models.MetaDica;
 import models.Tema;
+import models.UltimasDezStrategy;
 import models.dao.GenericDAOImpl;
 import play.Logger;
 import play.data.DynamicForm;
@@ -25,26 +29,40 @@ import play.mvc.Security;
 public class Application extends Controller {
 	private static final int MAX_DENUNCIAS = 3;
 	private static GenericDAOImpl dao = new GenericDAOImpl();
+	private static final String MAIS_VOTOS_POSITIVOS = "filtroMaisVotosPositivos";
+	private static final String MAIS_DISCORDANCIAS = "filtroMaisDiscordancias";
 	
 	@Transactional
 	@Security.Authenticated(Secured.class)
     public static Result index() {
+		Map<String, String> mapDados = Form.form().bindFromRequest().data();
+		
+		String filterStrategy;
+		if(mapDados.get("filtro")==null){
+			filterStrategy = "filtroMaisRecentes";
+		} else {
+			filterStrategy = mapDados.get("filtro");
+		}
+		
 		List<Disciplina> disciplinas = dao.findAllByClassName(Disciplina.class.getName());
-		List<Dica> dicas = dao.findAllByClassName(Dica.class.getName());
-		dicas = filtraNumeroDeDicas(dicas, 10);
+		List<Dica> dicas = escolheEstrategia(dao.findAllByClassName(Dica.class.getName()), filterStrategy);
         return ok(views.html.index.render(disciplinas, dicas));
     }
 	
-	private static ArrayList<Dica> filtraNumeroDeDicas(List<Dica> dicasTotal, int numDicas) {
-		ArrayList<Dica> dicasFiltrada = new ArrayList<>();
-		if(dicasTotal.size() > numDicas) {
-			for (int i = 0; i < numDicas; i++) {
-				dicasFiltrada.add(dicasTotal.get(dicasTotal.size()-1-i));
-			}
-		} else {
-			return (ArrayList<Dica>) dicasTotal;
+	private static List<Dica> escolheEstrategia(List<Dica> dicasTotal, String strategySelected) {
+		FilterStrategy strategy;
+		switch(strategySelected){
+		case MAIS_VOTOS_POSITIVOS:
+			strategy = new MaisVotosPositivosStrategy(dicasTotal);
+			break;
+		case MAIS_DISCORDANCIAS:
+			strategy = new MaisDiscordanciasStrategy(dicasTotal);
+			break;
+		default:
+			strategy = new UltimasDezStrategy(dicasTotal);
+			break;
 		}
-		return dicasFiltrada;
+		return strategy.filter();
 	}
 	
 	@Transactional

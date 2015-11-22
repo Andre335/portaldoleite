@@ -56,6 +56,21 @@
             			</div>
             			<p>Escolha uma disciplina ou tema ao lado para acessar os leites.</p>
             		</div>
+            		<div class="uk-panel uk-panel-box">
+            			<div class="uk-article">
+	            			<h1>Filtros:</h1>
+            				<div>
+	            			</div>
+            				<hr class="uk-article-divider-orange">
+            				<form method="get" action="@routes.Application.index()">
+            					<input type="radio" name="filtro" value="filtroMaisRecentes"> Dicas mais recentes
+            					<input type="radio" name="filtro" value="filtroMaisVotosPositivos"> Dicas com mais votos Positivos
+            					<input type="radio" name="filtro" value="filtroMaisDiscordancias"> Dicas com mais discordancias
+            					<button type="submit"> Filtrar </button>
+            				</form>
+            			</div>
+            			
+            		</div>
 		            	@for(disciplina <- disciplinas){
 					        <div class="uk-panel uk-panel-box">
 					            <div class="uk-article">

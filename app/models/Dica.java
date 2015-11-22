@@ -185,6 +185,6 @@ public abstract class Dica implements Comparable<Dica>{
 	public boolean isUnvotable() {
 		return this.concordancias>=20 || this.discordancias>=20;
 	}
-
+	
 	public abstract String getTipo();
 }
