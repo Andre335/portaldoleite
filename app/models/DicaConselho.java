@@ -9,9 +9,11 @@ public class DicaConselho extends Dica{
 	private String conselho;
 	
 	public DicaConselho() {
+		super();
 	}
 	
 	public DicaConselho(String conselho) {
+		super();
 		this.conselho = conselho;
 	}
 

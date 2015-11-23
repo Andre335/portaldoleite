@@ -188,7 +188,7 @@ public class MetaDica implements Comparable<MetaDica>{
 	}
 
 	public List<Dica> getDicasAdicionadas() {
-		Collections.sort(dicasAdicionadas);
+		Collections.sort(dicasAdicionadas, new MaisVotosComparator());
 		
 		for (Dica dica : dicasAdicionadas) {
 			dica.checaTipoDica();

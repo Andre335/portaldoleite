@@ -20,7 +20,7 @@ import javax.persistence.Transient;
 
 @Table(name="dica")
 @Entity(name="Dica")
-public abstract class Dica implements Comparable<Dica>{
+public abstract class Dica {
 	@Id
 	@GeneratedValue
 	@Column
@@ -59,7 +59,11 @@ public abstract class Dica implements Comparable<Dica>{
 	@Transient
 	private DicaDisciplina instanciaDisciplina;
 	
-	public Dica(){}
+	public Dica(){
+		this.usuariosQueJaVotaram = new ArrayList<String>();
+		this.usuarioqueQueJaDenunciaram = new ArrayList<String>();
+		this.metadicas = new ArrayList<>();
+	}
 
 	public Tema getTema() {
 		return tema;
@@ -68,7 +72,6 @@ public abstract class Dica implements Comparable<Dica>{
 	public void setTema(Tema tema) {
 		this.tema = tema;
 		this.usersCommentaries = new HashMap<String,String>();
-		this.usuariosQueJaVotaram = new ArrayList<String>();
 	}
 
 	public long getId() {
@@ -139,21 +142,6 @@ public abstract class Dica implements Comparable<Dica>{
 	
 	public boolean wasVotedByUser(String user){
 		return usuariosQueJaVotaram.contains(user); 
-	}
-
-	/**
-	 * Método a ser usado no sort de lista de Dica para que as primeiras
-	 * dicas da lista sejam as com mais concordâncias.
-	 */
-	@Override
-	public int compareTo(Dica otherDica) {
-		if (this.getConcordancias()>otherDica.getConcordancias()) {
-			return -1;
-		} else if (this.getConcordancias()<otherDica.getConcordancias()) {
-			return 1;
-		} else {
-			return 0;
-		}
 	}
 	
 	public void checaTipoDica() {

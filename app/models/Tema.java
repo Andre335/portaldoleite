@@ -93,7 +93,7 @@ public class Tema {
 	}
 
 	public List<Dica> getDicas() {
-		Collections.sort(dicas);
+		Collections.sort(dicas, new MaisVotosComparator());
 		
 		for (Dica dica : dicas) {
 			dica.checaTipoDica();

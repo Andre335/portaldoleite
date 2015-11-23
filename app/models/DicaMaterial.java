@@ -9,9 +9,11 @@ public class DicaMaterial extends Dica{
 	private String url;
 	
 	public DicaMaterial() {
+		super();
 	}
 	
 	public DicaMaterial(String url) {
+		super();
 		this.url = url;
 	}
 

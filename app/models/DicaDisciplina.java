@@ -12,9 +12,11 @@ public class DicaDisciplina extends Dica{
 	private String razao;
 	
 	public DicaDisciplina() {
+		super();
 	}
 	
 	public DicaDisciplina(String nomeDisciplina, String razao) {
+		super();
 		this.nomeDisciplina = nomeDisciplina;
 		this.razao = razao;
 	}

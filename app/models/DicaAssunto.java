@@ -9,9 +9,11 @@ public class DicaAssunto extends Dica{
 	private String assunto;
 	
 	public DicaAssunto(){
+		super();
 	}
 	
 	public DicaAssunto(String assunto) {
+		super();
 		this.assunto = assunto;
 	}
 
@@ -32,6 +34,4 @@ public class DicaAssunto extends Dica{
 	public String getTipo() {
 		return "DicaAssunto";
 	}
-	
-	
 }
