@@ -34,4 +34,9 @@ public class DicaMaterial extends Dica{
 	public String getTipo() {
 		return "DicaMaterial";
 	}
+
+	@Override
+	public String getRazao() {
+		return null;
+	}
 }

@@ -5,18 +5,18 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import estrategias.FilterStrategy;
+import estrategias.MaisDiscordanciasStrategy;
+import estrategias.MaisVotosPositivosStrategy;
+import estrategias.UltimasDezStrategy;
 import models.Dica;
 import models.DicaAssunto;
 import models.DicaConselho;
 import models.DicaDisciplina;
 import models.DicaMaterial;
 import models.Disciplina;
-import models.FilterStrategy;
-import models.MaisDiscordanciasStrategy;
-import models.MaisVotosPositivosStrategy;
 import models.MetaDica;
 import models.Tema;
-import models.UltimasDezStrategy;
 import models.dao.GenericDAOImpl;
 import play.Logger;
 import play.data.DynamicForm;
@@ -48,6 +48,14 @@ public class Application extends Controller {
 		List<Dica> dicas = escolheEstrategia(dao.findAllByClassName(Dica.class.getName()), filterStrategy);
         return ok(views.html.index.render(disciplinas, dicas));
     }
+	
+	@Transactional
+	@Security.Authenticated(Secured.class)
+	public static Result detalhes(Long id) {
+		List<Disciplina> disciplinas = dao.findAllByClassName(Disciplina.class.getName());
+		Dica dica = dao.findByEntityId(Dica.class, id);
+		return ok(views.html.detalhes.render(disciplinas, dica));
+	}
 	
 	private static List<Dica> escolheEstrategia(List<Dica> dicasTotal, String strategySelected) {
 		FilterStrategy strategy;

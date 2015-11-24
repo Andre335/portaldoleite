@@ -31,7 +31,7 @@ public class GenericDAOImpl implements GenericDAO {
 	public <T> T findByEntityId(Class<T> clazz, Long id) {
 		return JPA.em().find(clazz, id);
 	}
-
+	
 	@Override
 	public <T> List<T> findAllByClassName(String className) {
 		String hql = "FROM " + className;

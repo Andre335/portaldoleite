@@ -19,6 +19,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 
+import comparators.MaisVotosComparator;
+
 @Entity(name="Tema")
 public class Tema {
 	@Id

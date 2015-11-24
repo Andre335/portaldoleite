@@ -39,10 +39,10 @@ public abstract class Dica {
 	private Map<String, String> usersCommentaries;
 	
 	@ElementCollection
-	private List<String> usuariosQueJaVotaram;
+	private List<String> usuariosQueJaVotaram = new ArrayList<String>();;
 	
 	@ManyToMany(mappedBy="dicasAdicionadas")
-	private List<MetaDica> metadicas;
+	private List<MetaDica> metadicas = new ArrayList<>();;
 	
 	@Column
 	private int concordancias;
@@ -54,15 +54,12 @@ public abstract class Dica {
 	private int flag;
 	
 	@ElementCollection
-	private List<String> usuarioqueQueJaDenunciaram;
+	private List<String> usuarioqueQueJaDenunciaram = new ArrayList<String>();;
 	
 	@Transient
 	private DicaDisciplina instanciaDisciplina;
 	
 	public Dica(){
-		this.usuariosQueJaVotaram = new ArrayList<String>();
-		this.usuarioqueQueJaDenunciaram = new ArrayList<String>();
-		this.metadicas = new ArrayList<>();
 	}
 
 	public Tema getTema() {
@@ -150,9 +147,7 @@ public abstract class Dica {
 		}		
 	}
 	
-	public DicaDisciplina getInstanciaDisciplina() {
-		return instanciaDisciplina;
-	}
+	public abstract String getRazao();
 	
 	public void addUsuarioFlag(String user) {
 		this.usuarioqueQueJaDenunciaram.add(user);

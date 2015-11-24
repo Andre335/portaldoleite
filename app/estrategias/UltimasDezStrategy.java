@@ -1,7 +1,9 @@
-package models;
+package estrategias;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import models.Dica;
 
 public class UltimasDezStrategy implements FilterStrategy {
 	

@@ -84,7 +84,7 @@
 											@if(disciplina.getTemas().contains(dica.getTema)){
 											    <h2> @dica.getTema().getName() </h2>
 											    <p> @dica.getTexto() </p>
-											    <a href="@routes.Application.tema(dica.getTema().getId())"> Detalhes </a>
+											    <a href="@routes.Application.detalhes(dica.getId())"> Detalhes </a>
 											    <hr class="uk-article-divider-orange">
 											}
 										}

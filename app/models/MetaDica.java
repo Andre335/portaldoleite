@@ -20,6 +20,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
 
+import comparators.MaisVotosComparator;
+
 @Table(name="metadica")
 @Entity(name="MetaDica")
 public class MetaDica implements Comparable<MetaDica>{

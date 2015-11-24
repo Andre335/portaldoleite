@@ -1,6 +1,8 @@
-package models;
+package comparators;
 
 import java.util.Comparator;
+
+import models.Dica;
 
 public class MaisDiscordanciasComparator implements Comparator<Dica> {
 

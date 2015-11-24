@@ -1,9 +1,13 @@
-package models;
+package estrategias;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import comparators.MaisDiscordanciasComparator;
+
+import models.Dica;
 
 public class MaisDiscordanciasStrategy implements FilterStrategy {
 	

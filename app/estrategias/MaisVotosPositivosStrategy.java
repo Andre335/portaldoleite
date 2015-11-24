@@ -1,9 +1,13 @@
-package models;
+package estrategias;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import comparators.MaisVotosComparator;
+
+import models.Dica;
 
 public class MaisVotosPositivosStrategy implements FilterStrategy {
 	

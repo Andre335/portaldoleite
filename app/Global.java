@@ -46,6 +46,7 @@ public class Global extends GlobalSettings {
 
 	protected void criaDicas() {
 		dicaSiMiniT = new DicaConselho("Sempre esteja a par dos assuntos para quando tiver um miniteste.");
+		miniteste.setDisciplina(si1);
 		dicaSiMiniT.setTema(miniteste);
 		dicaSiMiniT.setUser("Andre");
 		dicaSiMiniT.addUsuarioQueVotou("Usuario 9");
@@ -55,6 +56,7 @@ public class Global extends GlobalSettings {
 		dao.persist(dicaSiMiniT);
 		
 		dicaSiLabs = new DicaConselho("Nao espere muito tempo para comecar a fazer os labs, para nao se atrasar.");
+		labs.setDisciplina(si1);
 		dicaSiLabs.setTema(labs);
 		dicaSiLabs.setUser("Usuario Padrao");
 		dicaSiLabs.addUsuarioQueVotou("Usuario Padrao");
@@ -64,6 +66,7 @@ public class Global extends GlobalSettings {
 		dao.persist(dicaSiLabs);
 		
 		dicaOacTiposMem = new DicaAssunto("Memoria Cache e a mais eficiente, porem mais cara.");
+		tiposDeMem.setDisciplina(oac);
 		dicaOacTiposMem.setTema(tiposDeMem);
 		dicaOacTiposMem.setUser("Andre");
 		dicaOacTiposMem.addUsuarioQueVotou("Usuario 1");
@@ -73,6 +76,7 @@ public class Global extends GlobalSettings {
 		dao.persist(dicaOacTiposMem);
 		
 		dicaEsTestes = new DicaMaterial("O Livro de engenharia de software do sommerville e muito bom.");
+		testes.setDisciplina(es);
 		dicaEsTestes.setTema(testes);
 		dicaEsTestes.setUser("Usuario 1");
 		dicaEsTestes.addUsuarioQueVotou("Andre");
@@ -83,6 +87,7 @@ public class Global extends GlobalSettings {
 		
 		dicaEsFerr = new DicaDisciplina("Voce tera que estar familiarizado com varias ferramentas para o projeto."
 				, "Tera de usar elas no seu projeto.");
+		ferramentas.setDisciplina(es);
 		dicaEsFerr.setTema(ferramentas);
 		dicaEsFerr.setUser("Usuario 2");
 		dicaEsFerr.addUsuarioQueVotou("Usuario 5");

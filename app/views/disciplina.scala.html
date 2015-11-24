@@ -171,7 +171,7 @@
 								<input class="uk-form-control uk-panel-badge" type="checkbox" name="dica" value="@dica.getId()">
 								@if(dica.getTipo().equals("DicaDisciplina")){
 	            					<p>Disciplinas importantes:</p><p class="normal-font">@dica.getTexto()</p>
-	            					<p>Razão:</p><p class="normal-font">@dica.getInstanciaDisciplina.getRazao()</p>
+	            					<p>Razão:</p><p class="normal-font">@dica.getRazao()</p>
 	            				}
 	            				@if(dica.getTipo().equals("DicaMaterial")){
 	            					<p>Link para material útil:</p><a href="@dica.getTexto()">@dica.getTexto()</a>
