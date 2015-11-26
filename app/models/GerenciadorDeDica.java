@@ -35,6 +35,4 @@ public class GerenciadorDeDica {
 		dao.persist(dica);
 		
 	}
-	
-
 }

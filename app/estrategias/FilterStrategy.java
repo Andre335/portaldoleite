@@ -1,11 +1,10 @@
 package estrategias;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import models.Dica;
+import models.Ajuda;
 
 public interface FilterStrategy {
 	
-	public List<Dica> filter();
+	public List<? extends Ajuda> filter();
 }

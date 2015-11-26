@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import comparators.MaisConcordanciasComparator;
+
 @Table(name="disciplina")
 @Entity(name="Disciplina")
 public class Disciplina {
@@ -76,7 +78,7 @@ public class Disciplina {
 	}
 
 	public List<MetaDica> getMetaDicas() {
-		Collections.sort(metaDicas);
+		Collections.sort(metaDicas, new MaisConcordanciasComparator());
 		return this.metaDicas;
 	}
 

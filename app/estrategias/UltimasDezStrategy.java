@@ -3,19 +3,19 @@ package estrategias;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.Dica;
+import models.Ajuda;
 
 public class UltimasDezStrategy implements FilterStrategy {
 	
-	private List<Dica> dicas;
+	private List<? extends Ajuda> dicas;
 	
-	public UltimasDezStrategy(List<Dica> dicas) {
+	public UltimasDezStrategy(List<? extends Ajuda> dicas) {
 		this.dicas = dicas;
 	}
 	
 	@Override
-	public List<Dica> filter() {
-		List<Dica> dicasFiltrada = new ArrayList<>();
+	public List<? extends Ajuda> filter() {
+		List<Ajuda> dicasFiltrada = new ArrayList<Ajuda>();
 		if(dicas.size() > 10) {
 			for (int i = 0; i < 10; i++) {
 				dicasFiltrada.add(dicas.get(dicas.size()-1-i));

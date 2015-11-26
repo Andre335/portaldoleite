@@ -19,7 +19,7 @@ import play.db.jpa.JPA;
 public class Global extends GlobalSettings {
 
 	private static GenericDAOImpl dao = new GenericDAOImpl();
-	private List<Disciplina> disciplinas = new ArrayList<>();
+	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	private Disciplina si1, oac, es;
 	private Dica dicaSiMiniT, dicaSiLabs;
 	private Dica dicaEsTestes, dicaEsFerr;

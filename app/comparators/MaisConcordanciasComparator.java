@@ -4,11 +4,11 @@ import java.util.Comparator;
 
 import models.Ajuda;
 
-public class MaisDiscordanciasComparator implements Comparator<Ajuda> {
-
+public class MaisConcordanciasComparator implements Comparator<Ajuda>{
+	
 	@Override
 	public int compare(Ajuda o1, Ajuda o2) {
-		if (o1.getDiscordancias()>o2.getDiscordancias()) {
+		if (o1.getConcordancias() > o2.getConcordancias()){
 			return -1;
 		} else if (o1.getDiscordancias()<o2.getDiscordancias()) {
 			return 1;
@@ -16,5 +16,4 @@ public class MaisDiscordanciasComparator implements Comparator<Ajuda> {
 			return 0;
 		}
 	}
-
 }

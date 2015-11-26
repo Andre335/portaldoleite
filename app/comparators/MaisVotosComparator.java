@@ -2,12 +2,12 @@ package comparators;
 
 import java.util.Comparator;
 
-import models.Dica;
+import models.Ajuda;
 
-public class MaisVotosComparator implements Comparator<Dica> {
+public class MaisVotosComparator implements Comparator<Ajuda> {
 
 	@Override
-	public int compare(Dica o1, Dica o2) {
+	public int compare(Ajuda o1, Ajuda o2) {
 		if (o1.getConcordancias()>o2.getConcordancias()) {
 			return -1;
 		} else if (o1.getConcordancias()<o2.getConcordancias()) {
@@ -16,5 +16,4 @@ public class MaisVotosComparator implements Comparator<Dica> {
 			return 0;
 		}
 	}
-
 }

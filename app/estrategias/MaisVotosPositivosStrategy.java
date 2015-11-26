@@ -2,24 +2,23 @@ package estrategias;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+
+import models.Ajuda;
 
 import comparators.MaisVotosComparator;
 
-import models.Dica;
-
 public class MaisVotosPositivosStrategy implements FilterStrategy {
 	
-	private List<Dica> dicas;
+	private List<? extends Ajuda> dicas;
 	
-	public MaisVotosPositivosStrategy(List<Dica> dicas) {
-		this.dicas = dicas;
+	public MaisVotosPositivosStrategy(List<? extends Ajuda> dicasTotal) {
+		this.dicas = dicasTotal;
 	}
 	
 	@Override
-	public List<Dica> filter() {
-		List<Dica> dicasFiltrada = new ArrayList<>();
+	public List<? extends Ajuda> filter() {
+		List<Ajuda> dicasFiltrada = new ArrayList<Ajuda>();
 		Collections.sort(dicas, new MaisVotosComparator());
 		if (dicas.size() > 10) {
 			for (int i = 0; i < 10; i++) {

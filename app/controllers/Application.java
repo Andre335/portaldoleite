@@ -1,14 +1,9 @@
 package controllers;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import estrategias.FilterStrategy;
-import estrategias.MaisDiscordanciasStrategy;
-import estrategias.MaisVotosPositivosStrategy;
-import estrategias.UltimasDezStrategy;
 import models.Dica;
 import models.DicaAssunto;
 import models.DicaConselho;
@@ -19,20 +14,24 @@ import models.GerenciadorDeDica;
 import models.MetaDica;
 import models.Tema;
 import models.dao.GenericDAOImpl;
-import play.Logger;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
+import estrategias.FilterStrategy;
+import estrategias.MaisDiscordanciasStrategy;
+import estrategias.MaisVotosPositivosStrategy;
+import estrategias.UltimasDezStrategy;
 
 public class Application extends Controller {
 	private static final int MAX_DENUNCIAS = 3;
 	private static GenericDAOImpl dao = new GenericDAOImpl();
 	private static final String MAIS_VOTOS_POSITIVOS = "filtroMaisVotosPositivos";
 	private static final String MAIS_DISCORDANCIAS = "filtroMaisDiscordancias";
-	private static final GerenciadorDeDica gerenciadorDeDica = new GerenciadorDeDica();	
+	private static final GerenciadorDeDica gerenciadorDeDica = new GerenciadorDeDica();
+	
 	
 	@Transactional
 	@Security.Authenticated(Secured.class)
@@ -50,7 +49,7 @@ public class Application extends Controller {
 		List<Dica> dicas = escolheEstrategia(dao.findAllByClassName(Dica.class.getName()), filterStrategy);
         return ok(views.html.index.render(disciplinas, dicas));
     }
-	
+
 	@Transactional
 	@Security.Authenticated(Secured.class)
 	public static Result detalhes(Long id) {
@@ -72,7 +71,7 @@ public class Application extends Controller {
 			strategy = new UltimasDezStrategy(dicasTotal);
 			break;
 		}
-		return strategy.filter();
+		return (List<Dica>) strategy.filter();
 	}
 	
 	@Transactional
@@ -143,32 +142,41 @@ public class Application extends Controller {
 			switch (tipoKey) {
 				case "assunto":
 					String assunto = formMap.get("assunto");
+					DicaAssunto dicaAssunto = new DicaAssunto(assunto);
 					
-					gerenciadorDeDica.setDica(new DicaAssunto(assunto));
-					gerenciadorDeDica.salvarDica(tema, userName, dao);
-							
+					tema.addDica(dicaAssunto);
+					dicaAssunto.setTema(tema);
+					dicaAssunto.setUser(userName);
+					dao.persist(dicaAssunto);				
 					break;
 				case "conselho":
 					String conselho = formMap.get("conselho");
+					DicaConselho dicaConselho = new DicaConselho(conselho);
 					
-					gerenciadorDeDica.setDica(new DicaConselho(conselho));
-					gerenciadorDeDica.salvarDica(tema, userName, dao);
-								
+					tema.addDica(dicaConselho);
+					dicaConselho.setTema(tema);
+					dicaConselho.setUser(userName);
+					dao.persist(dicaConselho);				
 					break;
 				case "disciplina":
 					String disciplinas = formMap.get("disciplinas");
 					String razao = formMap.get("razao");
 					
-					gerenciadorDeDica.setDica(new DicaDisciplina(disciplinas,razao));
-					gerenciadorDeDica.salvarDica(tema, userName, dao);
+					DicaDisciplina dicaDisciplina = new DicaDisciplina(disciplinas, razao);
 					
+					tema.addDica(dicaDisciplina);
+					dicaDisciplina.setTema(tema);
+					dicaDisciplina.setUser(userName);
+					dao.persist(dicaDisciplina);
 					break;
 				case "material":
 					String url = formMap.get("url");
-					
-					gerenciadorDeDica.setDica(new DicaMaterial(url));
-					gerenciadorDeDica.salvarDica(tema, userName, dao);
-					
+					DicaMaterial dicaMaterial = new DicaMaterial(url);
+									
+					tema.addDica(dicaMaterial);
+					dicaMaterial.setTema(tema);
+					dicaMaterial.setUser(userName);
+					dao.persist(dicaMaterial);				
 					break;
 				default:
 					break;
