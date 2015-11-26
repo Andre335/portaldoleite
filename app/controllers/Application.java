@@ -142,41 +142,32 @@ public class Application extends Controller {
 			switch (tipoKey) {
 				case "assunto":
 					String assunto = formMap.get("assunto");
-					DicaAssunto dicaAssunto = new DicaAssunto(assunto);
 					
-					tema.addDica(dicaAssunto);
-					dicaAssunto.setTema(tema);
-					dicaAssunto.setUser(userName);
-					dao.persist(dicaAssunto);				
+					gerenciadorDeDica.setDica(new DicaAssunto(assunto));
+					gerenciadorDeDica.salvarDica(tema, userName, dao);
+							
 					break;
 				case "conselho":
 					String conselho = formMap.get("conselho");
-					DicaConselho dicaConselho = new DicaConselho(conselho);
 					
-					tema.addDica(dicaConselho);
-					dicaConselho.setTema(tema);
-					dicaConselho.setUser(userName);
-					dao.persist(dicaConselho);				
+					gerenciadorDeDica.setDica(new DicaConselho(conselho));
+					gerenciadorDeDica.salvarDica(tema, userName, dao);
+								
 					break;
 				case "disciplina":
 					String disciplinas = formMap.get("disciplinas");
 					String razao = formMap.get("razao");
 					
-					DicaDisciplina dicaDisciplina = new DicaDisciplina(disciplinas, razao);
+					gerenciadorDeDica.setDica(new DicaDisciplina(disciplinas,razao));
+					gerenciadorDeDica.salvarDica(tema, userName, dao);
 					
-					tema.addDica(dicaDisciplina);
-					dicaDisciplina.setTema(tema);
-					dicaDisciplina.setUser(userName);
-					dao.persist(dicaDisciplina);
 					break;
 				case "material":
 					String url = formMap.get("url");
-					DicaMaterial dicaMaterial = new DicaMaterial(url);
-									
-					tema.addDica(dicaMaterial);
-					dicaMaterial.setTema(tema);
-					dicaMaterial.setUser(userName);
-					dao.persist(dicaMaterial);				
+					
+					gerenciadorDeDica.setDica(new DicaMaterial(url));
+					gerenciadorDeDica.salvarDica(tema, userName, dao);
+					
 					break;
 				default:
 					break;
