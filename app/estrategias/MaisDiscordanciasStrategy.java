@@ -10,14 +10,8 @@ import comparators.MaisDiscordanciasComparator;
 
 public class MaisDiscordanciasStrategy implements FilterStrategy {
 	
-	private List<? extends Ajuda> dicas;
-	
-	public MaisDiscordanciasStrategy(List<? extends Ajuda> dicas) {
-		this.dicas = dicas;
-	}
-	
 	@Override
-	public List<? extends Ajuda> filter() {
+	public List<? extends Ajuda> filter(List<? extends Ajuda> dicas) {
 		List<Ajuda> dicasFiltrada = new ArrayList<Ajuda>();
 		Collections.sort(dicas, new MaisDiscordanciasComparator());
 		if (dicas.size() > 10) {
@@ -29,5 +23,4 @@ public class MaisDiscordanciasStrategy implements FilterStrategy {
 			return dicas;
 		}
 	}
-
 }

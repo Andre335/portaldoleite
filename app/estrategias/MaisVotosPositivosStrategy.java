@@ -10,14 +10,8 @@ import comparators.MaisVotosComparator;
 
 public class MaisVotosPositivosStrategy implements FilterStrategy {
 	
-	private List<? extends Ajuda> dicas;
-	
-	public MaisVotosPositivosStrategy(List<? extends Ajuda> dicasTotal) {
-		this.dicas = dicasTotal;
-	}
-	
 	@Override
-	public List<? extends Ajuda> filter() {
+	public List<? extends Ajuda> filter(List<? extends Ajuda> dicas) {
 		List<Ajuda> dicasFiltrada = new ArrayList<Ajuda>();
 		Collections.sort(dicas, new MaisVotosComparator());
 		if (dicas.size() > 10) {

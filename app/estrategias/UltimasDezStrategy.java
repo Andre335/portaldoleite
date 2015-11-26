@@ -7,14 +7,8 @@ import models.Ajuda;
 
 public class UltimasDezStrategy implements FilterStrategy {
 	
-	private List<? extends Ajuda> dicas;
-	
-	public UltimasDezStrategy(List<? extends Ajuda> dicas) {
-		this.dicas = dicas;
-	}
-	
 	@Override
-	public List<? extends Ajuda> filter() {
+	public List<? extends Ajuda> filter(List<? extends Ajuda> dicas) {
 		List<Ajuda> dicasFiltrada = new ArrayList<Ajuda>();
 		if(dicas.size() > 10) {
 			for (int i = 0; i < 10; i++) {

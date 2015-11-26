@@ -13,6 +13,7 @@ import models.Disciplina;
 import models.GerenciadorDeDica;
 import models.MetaDica;
 import models.Tema;
+import models.Ajuda;
 import models.dao.GenericDAOImpl;
 import play.data.DynamicForm;
 import play.data.Form;
@@ -28,8 +29,7 @@ import estrategias.UltimasDezStrategy;
 public class Application extends Controller {
 	private static final int MAX_DENUNCIAS = 3;
 	private static GenericDAOImpl dao = new GenericDAOImpl();
-	private static final String MAIS_VOTOS_POSITIVOS = "filtroMaisVotosPositivos";
-	private static final String MAIS_DISCORDANCIAS = "filtroMaisDiscordancias";
+	private static final String MAIS_RECENTES = "filtroMaisRecentes";
 	private static final GerenciadorDeDica gerenciadorDeDica = new GerenciadorDeDica();
 	
 	
@@ -40,7 +40,7 @@ public class Application extends Controller {
 		
 		String filterStrategy;
 		if(mapDados.get("filtro")==null){
-			filterStrategy = "filtroMaisRecentes";
+			filterStrategy = MAIS_RECENTES;
 		} else {
 			filterStrategy = mapDados.get("filtro");
 		}
@@ -59,19 +59,8 @@ public class Application extends Controller {
 	}
 	
 	private static List<Dica> escolheEstrategia(List<Dica> dicasTotal, String strategySelected) {
-		FilterStrategy strategy;
-		switch(strategySelected){
-		case MAIS_VOTOS_POSITIVOS:
-			strategy = new MaisVotosPositivosStrategy(dicasTotal);
-			break;
-		case MAIS_DISCORDANCIAS:
-			strategy = new MaisDiscordanciasStrategy(dicasTotal);
-			break;
-		default:
-			strategy = new UltimasDezStrategy(dicasTotal);
-			break;
-		}
-		return (List<Dica>) strategy.filter();
+		FilterStrategy strategy = FilterStrategy.FilterMap.get(strategySelected);
+		return (List<Dica>) strategy.filter(dicasTotal);
 	}
 	
 	@Transactional
