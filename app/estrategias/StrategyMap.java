@@ -7,7 +7,7 @@ abstract class StrategyMap{
 	
 	static Map<String, FilterStrategy> getMap(){
 		Map<String,FilterStrategy> mapa = new HashMap<String, FilterStrategy>();
-		mapa.put("filtroMaisVotosPositivo", new MaisVotosPositivosStrategy());
+		mapa.put("filtroMaisVotosPositivos", new MaisVotosPositivosStrategy());
 		mapa.put("filtroMaisDiscordancias", new MaisDiscordanciasStrategy());
 		mapa.put("filtroMaisRecentes", new UltimasDezStrategy());
 		
